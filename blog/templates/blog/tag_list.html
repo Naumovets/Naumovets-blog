@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Теги, cтр. {{page_obj.number}}
+{% endblock %}
+
+{% block main %}
+
+  <ul class="nav navbar-nav menu_nav justify-content-center">
+    {% for tag in tags %}
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="{% url 'blog:post_list_by_tag' tag.slug %}">
+        <p>
+          {{tag}}
+        </p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% include 'blog/block/pagination.html' with page=page_obj %}
+
+
+{% endblock %}

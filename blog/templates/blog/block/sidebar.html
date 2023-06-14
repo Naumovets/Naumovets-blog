@@ -1,0 +1,18 @@
+{% load static %}
+{% load blog_tags %}
+<div class="col-lg-4 sidebar-widgets">
+  <div class="widget-wrap">
+    <form class="single-sidebar-widget newsletter-widget" method="POST" action="{% url 'blog:newsletter' %}?url={{request.path}}" >
+      {% csrf_token %}
+      <h4 class="single-sidebar-widget__title">Рассылка</h4>
+      <div class="form-group mt-30">
+        <div class="col-autos">
+          <input name="email" type="email" class="form-control" id="inlineFormInputGroup" placeholder="Введите email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" required>
+        </div>
+      </div>
+      <button type="submit" class="bbtns d-block mt-20 w-100">Подписаться</button>
+    </form>
+    {% show_popular_tags %}
+    {% show_popular_post %}
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="single-sidebar-widget post-category-widget">
+  <h4 class="single-sidebar-widget__title">Популярные теги</h4>
+  <ul class="cat-list mt-20">
+    {% for tag in tags %}
+      <li>
+        <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="d-flex justify-content-between">
+          <p>{{ tag }}</p>
+          <p>({{ tag.count_posts }})</p>
+        </a>
+      </li>
+    {% endfor %}
+
+  </ul>
+</div>

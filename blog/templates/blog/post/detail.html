@@ -1,0 +1,63 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{post.title}}
+{% endblock %}
+
+{% block main %}
+    <div class="main_blog_details">
+        <img class="img-fluid" src="{{post.image.url}}" alt="">
+        <a href="#"><h4>{{post.title}}</h4></a>
+        <div class="user_details">
+            <div class="float-left">
+                {% for tag in post.tags.all %}
+                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            <div class="float-right mt-sm-0 mt-3">
+                <div class="media">
+                    <div class="media-body">
+                        <p>{{ post.publish }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ post.body|linebreaks }}
+    </div>
+    <div class="comments-area">
+        <h4>{{ post.comments.count }} Comment{{ post.comments.count|pluralize }}</h4>
+        {% for comment in post.comments.all %}
+        <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                    <div class="desc">
+                        <h5>{{comment.name}}</h5>
+                        <p class="date">{{comment.created}}</p>
+                        <p class="comment">{{ comment.body }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="comment-form">
+        <h4>Leave a Reply</h4>
+        <form method="POST" action="{% url 'blog:post_comment' post.id %}">
+            {% csrf_token %}
+            <div class="form-group form-inline">
+                <div class="form-group col-lg-6 col-md-6 name">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+                </div>
+                <div class="form-group col-lg-6 col-md-6 email">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control mb-10" rows="5" name="body" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+            </div>
+            <button type="submit" class="button submit_btn">Post Comment</button>
+        </form>
+    </div>
+{% endblock %}

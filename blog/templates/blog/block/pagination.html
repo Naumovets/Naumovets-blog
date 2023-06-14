@@ -1,0 +1,31 @@
+{% load blog_tags %}
+<div class="row">
+    <div class="col-lg-12">
+        <nav class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+                {% if page.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ page.previous_page_number }}" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <i class="ti-angle-left"></i>
+                            </span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% show_pagination_numbers page %}
+
+                {% if page.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ page.next_page_number }}" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">
+                                <i class="ti-angle-right"></i>
+                            </span>
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+
+{% for num in numbers %}
+    <li class="page-item {% if num == active %}active {% endif %}">
+        <a href="?page={{num}}" class="page-link">
+            {{num}}
+        </a>
+    </li>
+{% endfor %}

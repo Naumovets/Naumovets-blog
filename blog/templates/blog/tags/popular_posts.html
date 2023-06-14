@@ -1,0 +1,21 @@
+<div class="single-sidebar-widget popular-post-widget">
+  <h4 class="single-sidebar-widget__title">Популярные публикации</h4>
+  <div class="popular-post-list">
+    {% for post in posts %}
+    <div class="single-post-list mt-4">
+      <div class="thumb">
+        <img class="card-img rounded-0" src="{{post.image.url}}" alt="">
+        <ul class="thumb-info">
+          <li><i class="ti-themify-favicon mr-1"></i> {{post.comments.count}}</li>
+          <li>{{post.publish.day}}.{{post.publish.month}}.{{post.publish.year}}</li>
+        </ul>
+      </div>
+      <div class="details mt-0">
+        <a href="{{ post.get_absolute_url }}">
+          <h6>{{post.title|truncatewords:10}}</h6>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Подписка на рассылку
+{% endblock %}
+
+{% block main %}
+  {% if success %}
+    <h2>Почта {{email}}</h2>
+    <p>Успешно подписана на рассылку!</p>
+  {% elif exist %}
+    <h2>Почта {{email}}</h2>
+    <p>Уже подписана на рассылку!</p>
+  {% else %}
+    <h2>Почту {{email}}</h2>
+    <p>Не вышло добавить в рассылку!</p>
+    <p>Напишите об этом в поддержку: support.naumovets@mail.ru</p>
+  {% endif %}
+
+  <a href="{{url}}">Вернуться назад</a>
+{% endblock %}
